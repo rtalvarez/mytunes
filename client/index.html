@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
   <body>
     <!-- Scripts may be placed anywhere on a page. But FYI, they block rendering of elements
      below them until after the scripts load-->
@@ -8,6 +13,7 @@
     <script src="bower_components/backbone/backbone.js"></script>
 
     <script src="data/data.js"></script>
+    
 
     <script src="models/SongModel.js"></script>
     <script src="collections/Songs.js"></script>
@@ -18,6 +24,10 @@
     <script src="views/LibraryView.js"></script>
     <script src="views/LibraryEntryView.js"></script>
     <script src="views/AppView.js"></script>
+
+
+    <script src="views/SongQueueView.js"></script>
+    
 
     <script>
       $(function(){
@@ -30,6 +40,7 @@
 
         // put the view onto the screen
         $('body').append(appView.render());
+        
       });
     </script>
   </body>
