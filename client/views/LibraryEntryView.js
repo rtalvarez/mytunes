@@ -7,20 +7,21 @@ var LibraryEntryView = Backbone.View.extend({
 
   events: {
     'click': function() {
-   
+  
+
 
       this.model.play();
 
-      console.log(this.model.get('queue')) 
+      
 
-      if (this.model.get('queue') === 1){
+      if (this.model.get('queue') === 0) {
         this.$el.toggleClass('playing');
       } else {
         this.$el.toggleClass('queued');
       }
 
-      console.log(this.model.get('queue'))
-      console.log(this) 
+      
+      
 
       
     }

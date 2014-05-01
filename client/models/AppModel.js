@@ -18,28 +18,48 @@ var AppModel = Backbone.Model.extend({
     // }, this);
 
     params.library.on('play', function(song){
+
       var place = song.get('queue') || 1;
       
-      if (place === 1){
-        console.log(song)
+      console.log(place)
+      console.log(this.nowPlaying());
+
+      if ( place === 1 && !this.nowPlaying() ){
+
         song.set('queue', place);
         this.set('currentSong', song);
+        this.dequeue();
       } else {
-
         song.set('queue', place++);
       }
-
     }, this);
 
     params.library.on('dequeue', function(song){
       this.set('queue', null);
     }, this);
+  },
 
-    // params.library.on('queue', function(song){
-    //   this.set('')
-    // })
+  dequeue: function(){
 
+    
+    this.get('library').each(function(song){
+      if (song.get('queue')) {
+        song.set( 'queue', song.get('queue') - 1 );
+      }
+    }, this)
+  },
 
+  nowPlaying: function(){
+
+    var playing = false;
+    this.get('library').each(function(song){
+      if ( song.get('queue') === 0 ) {
+        playing = true;
+        return playing;
+      }
+    });
+
+    return playing;
   }
 
 });
