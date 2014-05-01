@@ -8,14 +8,17 @@ var SongQueueEntryView = Backbone.View.extend({
   events: {
     'click': function() {
 
-      this.model.set('queue', null);
+      //this.model.set('queue', null);
     }
   },
 
   render: function(){
     //console.log(this.template(this.model.attributes));
     //this.$el.addClass('playing');
-    return this.$el.html(this.template(this.model.attributes));
+    if (this.model.get('queue') !== null){
+      
+      return this.$el.html(this.template(this.model.attributes));
+    }
   }
 
 });

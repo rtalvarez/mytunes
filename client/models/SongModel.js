@@ -12,14 +12,27 @@ var SongModel = Backbone.Model.extend({
     
   },
 
-  queue: function(){
+  queue: function(song){
 
-    this.trigger('queue', this);
+    this.trigger('queue ', this);
   },
 
   dequeue: function(){
 
     this.trigger('dequeue', this);
+  },
+
+  nowPlaying: function(){
+
+    var playing = false;
+    this.collection.each(function(song){
+      if ( song.get('queue') === 0 ) {
+        playing = true;
+        return true;
+      }
+    });
+
+    return playing;
   }
 
 });
