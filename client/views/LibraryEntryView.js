@@ -8,11 +8,22 @@ var LibraryEntryView = Backbone.View.extend({
   events: {
     'click': function() {
 
-      // Do this if there is no queue
-      this.$el.toggleClass('playing');
-      this.model.play();
+      this.$el.toggleClass('queued');
 
-      // If there is queue, add song to the queue
+      if (!this.model.get('queue')) {
+        // The clicked item is not in queue: add it to the queue
+        this.model.queue();
+      } else {
+        // The clicked item IS in the queue, remove it
+        this.model.dequeue();
+      }
+
+
+
+      // this.$el.toggleClass('playing');
+      // this.model.play();
+
+      
     }
   },
 
