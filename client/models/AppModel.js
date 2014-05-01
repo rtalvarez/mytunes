@@ -3,7 +3,7 @@ var AppModel = Backbone.Model.extend({
 
   initialize: function(params){
     this.set('currentSong', new SongModel());
-    this.set('songQueue', new SongModel());
+    this.set('songQueue', new SongQueue());
      //
     /* Note that 'this' is passed as the third argument. That third argument is
     the context. The 'play' handler will always be bound to that context we pass in.
@@ -28,43 +28,43 @@ var AppModel = Backbone.Model.extend({
       console.log(song);
       this.set('songQueue', song);
 
-    });
-  },
+    }, this);
+  }
 
-  removeFromQueue: function(song){
+  // removeFromQueue: function(song){
 
-    // var behindQueue = this.get('library')
+  //   // var behindQueue = this.get('library')
 
-    var start = song.get('queue');
-    var removing = false;
+  //   var start = song.get('queue');
+  //   var removing = false;
 
-    this.get('library').each(function(song){
-      if (!removing) {
-        if (song.get('queue') === start){
-          removing = true;
-          song.set('queue', null);
-        }
-      } else {
-        var oldPosition = song.get('queue');
-        song.set('queue', oldPosition - 1);
-      }
-    });
+  //   this.get('library').each(function(song){
+  //     if (!removing) {
+  //       if (song.get('queue') === start){
+  //         removing = true;
+  //         song.set('queue', null);
+  //       }
+  //     } else {
+  //       var oldPosition = song.get('queue');
+  //       song.set('queue', oldPosition - 1);
+  //     }
+  //   });
 
-  },
+  // },
 
-  queue: function(index, song){
-    console.log('queueing song in place ' + index)
-    song.set('queue', index);
-  },
+  // queue: function(index, song){
+  //   console.log('queueing song in place ' + index)
+  //   song.set('queue', index);
+  // },
 
-  dequeue: function(){
+  // dequeue: function(){
 
     
-    this.get('library').each(function(song){
-      if (song.get('queue')) {
-        song.set( 'queue', song.get('queue') - 1 );
-      }
-    }, this)
-  }
+  //   this.get('library').each(function(song){
+  //     if (song.get('queue')) {
+  //       song.set( 'queue', song.get('queue') - 1 );
+  //     }
+  //   }, this)
+  // }
 
 });
