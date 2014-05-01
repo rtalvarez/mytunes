@@ -24,9 +24,10 @@ var AppModel = Backbone.Model.extend({
 
     params.library.on('queue', function(song){
 
-      console.log('queue event fired')
+      console.log('queue event fired');
+      console.log(song);
       this.set('songQueue', song);
-      
+
     });
   },
 
