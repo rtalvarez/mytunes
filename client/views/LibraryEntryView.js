@@ -8,14 +8,21 @@ var LibraryEntryView = Backbone.View.extend({
   events: {
     'click': function() {
 
-      this.$el.toggleClass('queued');
 
-      if (!this.model.get('queue')) {
-        // The clicked item is not in queue: add it to the queue
-        this.model.queue();
-      } else {
-        // The clicked item IS in the queue, remove it
+      this.$el.toggleClass('queued');
+      var place = this.model.get('queue');
+      place = place || 1;
+
+
+      if (place === 1) {
+      // If item is in the first place of the queue, just play it
+        this.model.play();
+      } else if (place > 1) {
+      // The item was already queued and was clicked again, remove it from the queue
         this.model.dequeue();
+      } else {
+      // The item was not in the queue and was clicked, add it to the queue
+        this.set('queue', place++);
       }
 
 
