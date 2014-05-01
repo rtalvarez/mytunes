@@ -25,6 +25,8 @@ var AppModel = Backbone.Model.extend({
     params.library.on('enqueue', function(song){
       this.set('songQueue', song);
     }, this);
+
+
   },
 
   // removeFromQueue: function(song){

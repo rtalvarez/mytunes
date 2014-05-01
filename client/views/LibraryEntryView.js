@@ -7,19 +7,16 @@ var LibraryEntryView = Backbone.View.extend({
 
   events: {
     'click': function() {
-
-
-      console.log('click event fired');
+      
       var nowPlaying = this.model.nowPlaying();
-      console.log('now playing ' + nowPlaying)
-
+    
       if ( !nowPlaying ) {
         this.$el.toggleClass('playing');
         this.model.play();
       } else {
-        console.log('song queued');
+        
         this.$el.toggleClass('queued');
-        this.model.queue();
+        this.model.enqueue();
       }
     }
   },

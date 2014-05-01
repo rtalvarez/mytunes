@@ -12,12 +12,12 @@ var AppView = Backbone.View.extend({
     // This code jumps to PlayerView.js, sets playerView.model to 'this' and renders the play
     // tl;dr it plays the song
     this.model.on('change:currentSong', function(model){
-      console.log('song changed')
+      
       this.playerView.setSong(model.get('currentSong'));
     }, this);
 
     this.model.on('change:songQueue', function(model, index, collection){
-      console.log('songQueue event fired!');
+      
 
       // Queue appropriately
       this.model.queue(model.get('songQueue'));

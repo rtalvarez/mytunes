@@ -12,14 +12,27 @@ var SongModel = Backbone.Model.extend({
     
   },
 
-  queue: function(song){
+  enqueue: function(){
 
+    console.log('enqueued ' + this.get('title'))
     this.trigger('enqueue ', this);
   },
 
-  dequeue: function(){
+  dequeue: function(song){
 
-    this.trigger('dequeue', this);
+    song.set('queue', null);
+    var next;
+    console.log('dequeue song ' + song.get('title'));
+
+    song.collection.each(function(song){
+      if ( song.get('queue') === 1){
+        next = song;
+        return;
+      }
+    });
+
+    console.log('enqueue song ' + next.get('title'))
+    next.enqueue()
   },
 
   nowPlaying: function(){
@@ -33,6 +46,10 @@ var SongModel = Backbone.Model.extend({
     });
 
     return playing;
+  },
+
+  ended: function(event){
+    console.log(this);
   }
 
 });
